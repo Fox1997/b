@@ -10,4 +10,7 @@ git push -u origin main
 
 ####添加README
 git commit --amend --no-edit  
-git push
+git push  
+
+#####git add . 的时候遇到warning: LF will be replaced by CRLF in ...... 解决办法  :::::
+git git config --global core.autocrlf false
