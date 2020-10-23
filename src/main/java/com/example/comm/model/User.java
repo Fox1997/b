@@ -24,7 +24,7 @@ public class User {
         this.name = name;
     }
 
-    public String getAccountId(String s) {
+    public String getAccountId() {
         return accountId;
     }
 
