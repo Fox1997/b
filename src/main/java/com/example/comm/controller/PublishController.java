@@ -44,7 +44,7 @@ public class PublishController {
             model.addAttribute("error","标题不能为空");
             return "publish";
         }
-        if (description == null|| description=="")
+        if (description == null||description=="")
         {
             model.addAttribute("error","描述不能为空");
             return "publish";
