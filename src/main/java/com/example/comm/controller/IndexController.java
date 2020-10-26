@@ -1,5 +1,6 @@
 package com.example.comm.controller;
 
+import com.example.comm.mapper.QuestionMapper;
 import com.example.comm.mapper.UserMapper;
 import com.example.comm.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,30 @@ public class IndexController {
     @Autowired(required = false)
     private UserMapper userMapper;
 
+    @Autowired(required = false)
+    private QuestionMapper questionMapper;
+
     @GetMapping("/")
     public String index(HttpServletRequest request){
         Cookie[] cookies=request.getCookies();
-        for (Cookie cookie : cookies)
+        if(cookies !=null && cookies.length!=0)
         {
-            if(cookie.getName().equals("token"))
+            for (Cookie cookie : cookies)
             {
-                String token = cookie.getValue();
-                User user=userMapper.findByToken(token);
-                if(user != null)
+                if(cookie.getName().equals("token"))
                 {
-                    request.getSession().setAttribute("user",user);
+                    String token = cookie.getValue();
+                    User user=userMapper.findByToken(token);
+                    if(user != null)
+                    {
+                        request.getSession().setAttribute("user",user);
+                    }
+                    break;
                 }
-                break;
             }
+
         }
+
 
         return "index";
     }
