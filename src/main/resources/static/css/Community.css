@@ -21,3 +21,7 @@ body {
 .profile .section{
     margin-top: 15px;
 }
+.community-menu{
+    collapse: #999;
+    font-size: 13px;
+}

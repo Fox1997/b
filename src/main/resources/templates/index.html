@@ -12,7 +12,7 @@
     <script src="../static/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-<div th:insert="nav :: nav"></div>
+<div th:insert="~{nav :: nav}"></div>
 
 <div class="container-fluid main" >
     <div class="row">
@@ -23,11 +23,13 @@
                  <div class="media-left">
                      <a href="#">
                          <img  class="media-object img-rounded"
-                               th:src="${question.user.avatarUrl}" style="width: 48px;height: 48px">
+                               th:src="${question.user.avatarUrl}"  alt="avatar" style="width: 48px;height: 48px">
                      </a>
                  </div>
                  <div class="media-body">
-                     <h4 class="media-heading" th:text="${question.title}"></h4>
+                     <h4 class="media-heading" >
+                         <a th:href="@{'/question/'+${question.id}} " th:text="${question.title} "></a>
+                     </h4>
                      <span th:text="${question.description}"></span><br>
                      <span class="text-desc">
                          <span th:text="${question.commentCount}"></span>个回复  .  <span th:text="${question.viewCount}"></span> 次浏览  .   <span th:text="${#dates.format(question.gmtCreate,'dd MMMM yyyy')}"></span></span>

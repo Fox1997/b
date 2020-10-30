@@ -1,12 +1,7 @@
 package com.example.comm.mapper;
 
-import com.example.comm.dto.QuestionDto;
 import com.example.comm.model.User;
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserMapper {
@@ -19,7 +14,11 @@ public interface UserMapper {
     @Select("select * from user where id = #{id}")
     User findById(@Param("id") Integer id);
 
+    @Select("select * from user where account_id = #{accountId}")
+    User findByAccountId(@Param("accountId") String accountId);
 
+    @Update("update user set name = #{name},token = #{token},gmt_modified= #{gmtModified},avatar_url=#{avatarUrl} where id = #{id}")
+    void update(User user);
 
 }
 
